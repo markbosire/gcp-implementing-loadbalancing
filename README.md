@@ -15,8 +15,8 @@ gcloud compute instances create $INSTANCE \
 ### Explanation:
 
 - `gcloud compute instances create`: This is the base command to create a new Compute Engine instance.
-- `$INSTANCE`: This variable should contain the name of your instance 
-- `--zone=$ZONE`: Specifies the zone where the instance will be created. The `$ZONE` variable should contain the specified zone .
+- `$INSTANCE`: This variable should contain the name of your instance . Replace $INSTANCE with the specified INSTANCE name in the instruction
+- `--zone=$ZONE`: Specifies the zone where the instance will be created. The `$ZONE` variable should contain the specified zone .Replace $ZONE with the specified zone name in the instruction
 - `--machine-type=e2-micro`: Sets the machine type to e2-micro
 
 This command creates a new Compute Engine instance with the specified name, in the given zone, using the e2-micro machine type. By default, it will use the Debian Linux image.
@@ -47,7 +47,7 @@ gcloud compute instance-templates create web-server-template \
         --machine-type e2-medium \
         --region $REGION
 ```
-
+Replace $REGION with the specified region name in the instruction
 This command creates an instance template:
 - `--metadata-from-file startup-script=startup.sh`: Specifies the startup script we created earlier.
 - `--machine-type e2-medium`: Sets the machine type to e2-medium as required.
@@ -64,6 +64,7 @@ gcloud compute instance-groups managed create web-server-group \
 ```
 
 This creates a managed instance group:
+Replace $REGION with the specified region name in the instruction
 - `--base-instance-name web-server`: Sets the base name for instances in the group.
 - `--size 2`: Specifies that the group should maintain 2 instances.
 - `--template web-server-template`: Uses the template we created in step 2.
@@ -75,7 +76,7 @@ gcloud compute firewall-rules create $FIREWALL \
         --allow tcp:80 \
         --network default
 ```
-
+Replace $FIREWALL with the specified firewall name in the instruction
 This creates a firewall rule to allow HTTP traffic (port 80) to our instances. Without this rule, the incoming web requests would be blocked by GCP's default firewall settings
 
 ### Step 5: Create a health check
@@ -96,6 +97,7 @@ gcloud compute instance-groups managed \
 ```
 
 This sets a named port for our instance group, which will be used by the load balancer.
+Replace $REGION with the specified region name in the instruction
 
 ### Step 7: Create a backend service
 
@@ -116,7 +118,7 @@ gcloud compute backend-services add-backend web-server-backend \
         --instance-group-region $REGION \
         --global
 ```
-
+Replace $REGION with the specified region name in the instruction
 This adds our instance group as a backend to the backend service.
 
 ### Step 9: Create a URL map
